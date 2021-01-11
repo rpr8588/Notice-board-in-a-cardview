@@ -1,0 +1,27 @@
+
+<mat-toolbar color="primary"> Apartments demo </mat-toolbar>
+<!-- <div class="content"> -->
+
+  <div style="text-align: right;padding: 20px;">
+    <button mat-raised-button color="primary" (click)="newMember(null,null)">Add Apartment</button>
+   
+  </div>
+  <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%"  fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let card of cardsList">
+      <mat-card class="mat-elevation-z4">
+    <mat-card-header>
+      <mat-card-title style="margin-left: 20px;">Title:{{card.title}}</mat-card-title>
+    </mat-card-header>
+    <!-- <img mat-card-image src="../assets/images/Apartment1.png" /> -->
+    <mat-card-content>
+      <p>Date:{{card.postdate | date:'MMM dd, y'}}</p>
+      <p>Status:{{card.status}}</p>
+      <p>Description:{{card.description}}</p>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="edit(card)">Edit</button> <button mat-button (click)="delete(card.id)">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+  </div>
+</div>

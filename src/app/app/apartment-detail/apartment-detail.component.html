@@ -1,0 +1,82 @@
+<div class="wallet-popup">
+    <button class="close " mat-button (click)="onNoClick()">
+        <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+    </button>
+    <!-- <div class="example-loading-shade" *ngIf="isDataLoaded">
+        <mat-spinner class="spinner-center" diameter="50" strokeWidth="10"></mat-spinner>
+    </div> -->
+    <h1 mat-dialog-title>New Apartment</h1>
+    <mat-dialog-content>
+        <div class="content-layout fullwidth-basic-normal-scroll">
+            <mat-card class="auth-card fullscreen">
+                <div class="flex w-full">
+                    <!-- Form container -->
+                    <div class="form-container w-full">
+                        <div class="erron-note mt-6" style="color:red" *ngIf="errordiv||sponserInvalid">
+                            <mat-icon></mat-icon>
+                            {{errordiv}}
+                        </div>
+                        <div class="form w-full m-0">
+                            <form [formGroup]="DetailForm" class="example-form">
+                                    <div class="flex justify-start action-mob">
+                                            
+                                            <mat-form-field class="mb-0 pr-2">
+                                                <mat-label>Title</mat-label>
+                                                <input matInput [formControlName]="'title'" id="title" placeholder="Title" maxlength="20" [autocomplete]="'off'" [required]="true" [(ngModel)]="DetailFormObj.title">
+                                                <mat-error *ngIf="DetailForm.get('title').hasError('required')">
+                                                    title is required
+                                                </mat-error> 
+                                            </mat-form-field>
+                                         <mat-form-field class="mb-0 pr-2">
+                                                    <mat-label>Date</mat-label>
+                                                <input matInput [matDatepicker]="picker" placeholder="Date" [(ngModel)]="DetailFormObj.postdate" [formControlName]="'postdate'" id="postdate" required>
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                                <mat-error *ngIf="DetailForm.get('postdate').hasError('required')">
+                                                    Date is required
+                                                    </mat-error> 
+                                            </mat-form-field> 
+                                        
+                                        </div>
+                                 <div class="flex justify-start action-mob">
+                                    <mat-form-field class="mb-0 pr-2">
+                                        <mat-label>Apartment Id</mat-label>
+                                        <mat-select   [(ngModel)]="DetailFormObj.appartmentId" #viewChanger="matSelect" formControlName="appartmentId" required>
+                                            <mat-option>--Select--</mat-option> 
+                                            <mat-option *ngFor="let category of ApartmentList"  [value]="category.id">
+                                                {{category.id}}
+                                            </mat-option> 
+                                        </mat-select>
+                                        <mat-error *ngIf="DetailForm.get('appartmentId').hasError('required')">
+                                            ApartmentId is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                        <mat-form-field class="mb-0">
+                                            <mat-label>Status</mat-label>
+                                            <input matInput [formControlName]="'status'" id="status" placeholder="status" maxlength="20" [autocomplete]="'off'" [required]="true" [(ngModel)]="DetailFormObj.status" >
+                                            <mat-error *ngIf="DetailForm.get('status').hasError('required')">
+                                                status is required
+                                            </mat-error> 
+                                        </mat-form-field>
+                                        <mat-form-field class="mb-0">
+                                            <mat-label>Description</mat-label>
+                                            <input matInput [formControlName]="'description'" id="status" placeholder="description" maxlength="100" [autocomplete]="'off'" [required]="" [(ngModel)]="DetailFormObj.description" >
+                                             
+                                        </mat-form-field>
+                                    </div>                               
+                                <div class="text-right">
+                                    <button class="submit-button treo-mat-button-large mat-primary" mat-flat-button type="button" (click)="saveApartment()">
+                                        <span> Save</span>
+                                    </button>&nbsp;&nbsp;
+                                    <button class="submit-button treo-mat-button-large bg-gray-200" mat-flat-button type="button" (click)="onNoClick()">
+                                        <span> Cancel </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </mat-dialog-content>
+</div>
